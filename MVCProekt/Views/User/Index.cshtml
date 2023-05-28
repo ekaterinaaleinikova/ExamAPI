@@ -1,0 +1,33 @@
+﻿@model List<ExamAPI.Models.User>
+@*@model List<User>*@
+
+<h2>Зарегистрированные пользователи</h2>
+
+<table>
+    <tr>
+        <th>ИИН</th>
+        <th>Пароль</th>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Iin</td>
+            <td>@user.Password</td>
+        </tr>
+    }
+</table>
+
+<h2>Регистрация нового пользователя</h2>
+
+@using (Html.BeginForm("Register", "User", FormMethod.Post))
+{
+    <label for="Iin">ИИН:</label>
+    <input type="text" name="Iin" required />
+
+    <label for="Password">Пароль:</label>
+    <input type="password" name="password" required />
+
+
+    <button type="submit">Зарегистрироваться</button>
+}
+

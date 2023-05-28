@@ -1,0 +1,87 @@
+﻿@model List<ExamAPI.Models.Document>
+@*@model Document*@
+
+<h2>Все документы</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Уникальный идентификатор документа</th>
+            <th>Тип документа</th>
+            <th>Дата создания документа</th>
+            <th>Автор документа</th>
+            <th>Название документа</th>
+            <th>Содержимое документа</th>
+            <th>Получатель документа</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var doc in Model)
+        {
+            <tr>
+                <td>@doc.Id</td>
+                <td>@doc.Type</td>
+                <td>@doc.CreatedDate</td>
+                <td>@doc.CreatedUserId</td>
+                <td>@doc.Name</td>
+                <td>@doc.Content</td>
+                <td>@doc.ReceiverUserId</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<h2>Добавление документа</h2>
+
+@using (Html.BeginForm("Index", "Document", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <label>Тип документа:</label>
+        <input type="text" name="Type" required class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Дата создания документа:</label>
+        <input type="datetime" name="CreateDate" required class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Автор документа:</label>
+        <input type="text" name="CreateUserId" required class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Название документа:</label>
+        <input type="text" name="Name" required class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Содержимое документа:</label>
+        <input type="file" name="Content" required class="form-control-file" />
+    </div>
+    <div class="form-group">
+        <label>Получатель документа:</label>
+        <input type="text" name="ReceiverUserId" required class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Добавить</button>
+}
+
+
+<style>
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+</style>
+
